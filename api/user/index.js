@@ -1,7 +1,9 @@
-const userLogin = require('./login')
+const {
+    searchAccount,
+} = require('./login')
 const userRegister = require('./register')
 
 module.exports = {
-    userLogin,
+    searchAccount,
     userRegister,
 }

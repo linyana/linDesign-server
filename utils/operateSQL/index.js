@@ -14,17 +14,17 @@ function dbMiddleware(err, res, resolve, reject) {
 
 module.exports = {
     constructor(){
-        this.connection = mysql.createConnection(config.dbConfig)
+        this.connection = mysql.createConnection(config)
         this.connection.connect()
     },
 
     search(params){
+        this.constructor()
         return new Promise((resolve, reject) => {
             this.connection.query(
-                `SELECT ${params.select} FROM ${params.table} WHERE ${params.where}`,
+                `SELECT * FROM ${params.table} WHERE ${params.where}`,
                 (err, res) => {
                     dbMiddleware(err, res, resolve, reject)
-                    this.end()
                 }
             );
         });

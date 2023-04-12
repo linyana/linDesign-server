@@ -1,9 +1,12 @@
 const operateSQL = require('../../utils/operateSQL')
 
-async function userLogin() {
-    return await operateSQL.searchAll({
-        table: 'user'
+async function searchAccount(account) {
+    return await operateSQL.search({
+        table: 'user',
+        where: `account="${account}"`,
     })
 }
 
-module.exports = userLogin
+module.exports = {
+    searchAccount,
+}
