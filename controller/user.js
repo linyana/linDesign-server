@@ -45,7 +45,14 @@ async function userRegisterApi(event, req, res) {
     if(!password || !account){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "请输入关键词");
     }
-    return await userRegister(account,password);
+    const response = await searchAccount(account);
+    if(response.length){
+        throw new MyError(NO_AUTH_ERROR_CODE, "account had been already exist.");
+    }
+    await userRegister(account,password)
+    return {
+        message: 'register success.',
+    }
 }
 
 module.exports = {
