@@ -8,7 +8,14 @@ const {
     userRegister,
     searchAccount,
 } = require("../api/user");
+const jwt = require("jsonwebtoken");
 
+/**
+ * user login
+ * @param event
+ * @param req
+ * @param res
+ */
 async function userLoginApi(event, req, res) {
     const {
         account,
@@ -22,9 +29,10 @@ async function userLoginApi(event, req, res) {
         throw new MyError(NO_AUTH_ERROR_CODE, "account didn\'t exist.");
     }
     if(response[0]?.password === password){
+        const tokenStr = jwt.sign({ account: account }, 'mes_qdhd_mobile_xhykjyxgs', { expiresIn: '10h' });
         return {
             message: '',
-            token: 'Bearer 1'
+            token: `Bearer ${tokenStr}`
         }
     }else {
         throw new MyError(NO_AUTH_ERROR_CODE, "password wrong.");

@@ -6,7 +6,12 @@ const jwt = require('jsonwebtoken');
 const MyError = require("./exception");
 const bodyParser = require('body-parser');
 const {FORBIDDEN_ERROR_CODE} = require("./exception/errorCode");
+const verToken = require('./utils/token')
 
+// token
+const {
+    expressjwt,
+} = require("express-jwt")
 
 class ExpressServer {
     constructor (){
@@ -26,17 +31,33 @@ class ExpressServer {
         this.contextPath = "/api";
         //使用中间件
         this.app.use(express.urlencoded({ extended: true }))
+
+        //验证token是否过期并规定哪些路由不用验证
+        this.app.use(expressjwt({
+            secret: 'mes_qdhd_mobile_xhykjyxgs',
+            algorithms: ['HS256']
+        }).unless({
+            path: ['/api/user/login']//除了这个地址，其他的URL都需要验证
+        }));
+        this.app.use(function(err, req, res, next) {
+            if (err.name = 'UnauthorizedError') {
+                return res.send({
+                    code: 401,
+                    message: 'Given token not valid for any token type'
+                });
+            }
+        });
     }
 
     setRoute(path, handlerFunction) {
         const handler = async (req, res) => {
+            let result;
             // IP 过滤
             const requestClientIp = getClientIp(req);
             if (!requestClientIp) {
                 return FORBIDDEN_ERROR_CODE;
             }
             const event = req.body;
-            let result;
             try {
                 const startTime = new Date().getTime();
                 let params;
@@ -53,7 +74,7 @@ class ExpressServer {
                 result = await handlerFunction(event, req, res);
                 // 封装响应
                 result = {
-                    code: 0,
+                    code: 200,
                     data: result,
                 };
                 console.log(
@@ -69,12 +90,12 @@ class ExpressServer {
                     result = {
                         code: e.code,
                         message: e.message,
-                        data: null,
+                        data: [],
                     };
                 } else {
                     result = {
                         code: 500,
-                        data: null,
+                        data: [],
                         message: "server error",
                     };
                 }
