@@ -1,14 +1,21 @@
+// error
 const MyError = require("../exception");
 const {
     REQUEST_PARAMS_ERROR_CODE,
     NO_AUTH_ERROR_CODE,
 } = require("../exception/errorCode");
 
+// api map
 const {
     userRegister,
     searchAccount,
 } = require("../api/user");
-const jwt = require("jsonwebtoken");
+
+// token
+const {
+    setToken,
+    verToken,
+} = require("../utils/token")
 
 /**
  * user login
@@ -29,7 +36,7 @@ async function userLoginApi(event, req, res) {
         throw new MyError(NO_AUTH_ERROR_CODE, "account didn\'t exist.");
     }
     if(response[0]?.password === password){
-        const tokenStr = jwt.sign({ account: account }, 'mes_qdhd_mobile_xhykjyxgs', { expiresIn: '10h' });
+        const tokenStr = await setToken(account, response[0].id)
         return {
             message: '',
             token: `Bearer ${tokenStr}`
@@ -50,10 +57,15 @@ async function userRegisterApi(event, req, res) {
         password,
         account,
     } = req.body
+
+    const token = req.headers.authorization
+
     if(!password || !account){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "请输入关键词");
     }
     const response = await searchAccount(account);
+    const t2 = await verToken(token)
+    console.log(t2)
     if(response.length){
         throw new MyError(NO_AUTH_ERROR_CODE, "account had been already exist.");
     }
