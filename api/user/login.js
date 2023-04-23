@@ -1,4 +1,6 @@
-const operateSQL = require('../../utils/operateSQL')
+const {
+    operateSQL,
+} = require('../../utils')
 
 async function searchAccount(account) {
     return await operateSQL.search({

@@ -1,12 +1,12 @@
 const {
-    searchAccount,
+    userLoginApi,
 } = require('./login')
 
 const {
-    userRegister,
+    userRegisterApi,
 } = require('./register')
 
 module.exports = {
-    searchAccount,
-    userRegister,
+    userLoginApi,
+    userRegisterApi,
 }
