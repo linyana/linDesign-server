@@ -5,10 +5,12 @@ const {
 
 const {
     getCommentList,
+    addComment,
 } = require('./comment')
 
 module.exports = {
     searchAccount,
     userRegister,
     getCommentList,
+    addComment,
 }

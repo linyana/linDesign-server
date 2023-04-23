@@ -106,25 +106,7 @@ class ExpressServer {
             }
             res.send(result);
         };
-        if(methods === 'post'){
-            this.app.post(this.contextPath + path, handler);
-        }else {
-            this.app.post(this.contextPath + path, async (req, res) => {
-                res.send({
-                    message: 'Don\'t have this method, plz check it.',
-                })
-            })
-        }
-        if(methods === 'get'){
-            this.app.get(this.contextPath + path, handler);
-        }
-        else {
-            this.app.get(this.contextPath + path, async (req, res) => {
-                res.send({
-                    message: 'Don\'t have this method, plz check it.',
-                })
-            })
-        }
+        this.app[methods](this.contextPath + path, handler);
     }
 
     // 开启端口
