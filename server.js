@@ -37,7 +37,7 @@ class ExpressServer {
             secret: 'mes_qdhd_mobile_xhykjyxgs',
             algorithms: ['HS256']
         }).unless({
-            path: ['/api/user/login']//除了这个地址，其他的URL都需要验证
+            path: ['/api/user/login', '/api/user/register']//除了这个地址，其他的URL都需要验证
         }));
         this.app.use(function(err, req, res, next) {
             if (err.name = 'UnauthorizedError') {
@@ -49,7 +49,7 @@ class ExpressServer {
         });
     }
 
-    setRoute(path, handlerFunction) {
+    setRoute(path, handlerFunction, methods) {
         const handler = async (req, res) => {
             let result;
             // IP 过滤
@@ -108,7 +108,25 @@ class ExpressServer {
             }
             res.send(result);
         };
-        this.app.post(this.contextPath + path, handler);
+        if(methods === 'post'){
+            this.app.post(this.contextPath + path, handler);
+        }else {
+            this.app.post(this.contextPath + path, async (req, res) => {
+                res.send({
+                    message: 'Don\'t have this method, plz check it.',
+                })
+            })
+        }
+        if(methods === 'get'){
+            this.app.get(this.contextPath + path, handler);
+        }
+        else {
+            this.app.get(this.contextPath + path, async (req, res) => {
+                res.send({
+                    message: 'Don\'t have this method, plz check it.',
+                })
+            })
+        }
     }
 
     // 开启端口

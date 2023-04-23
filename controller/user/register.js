@@ -9,12 +9,12 @@ const {
 const {
     userRegister,
     searchAccount,
-} = require("../../api/user");
+} = require("../../api");
 
 // token
 const {
     verToken,
-} = require("../../utils/token")
+} = require("../../utils")
 
 /**
  * user register

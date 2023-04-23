@@ -8,12 +8,12 @@ const {
 // api map
 const {
     searchAccount,
-} = require("../../api/user");
+} = require("../../api");
 
 // token
 const {
     setToken,
-} = require("../../utils/token")
+} = require("../../utils")
 
 /**
  * user login
