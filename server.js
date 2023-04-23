@@ -1,12 +1,10 @@
 const express = require('express');
 const http = require('http');
-// login
-const jwt = require('jsonwebtoken');
+
 // exception
 const MyError = require("./exception");
 const bodyParser = require('body-parser');
 const {FORBIDDEN_ERROR_CODE} = require("./exception/errorCode");
-const verToken = require('./utils/token')
 
 // token
 const {
