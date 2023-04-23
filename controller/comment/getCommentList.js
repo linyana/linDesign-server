@@ -7,7 +7,7 @@ const {
 // api map
 const {
     getCommentList,
-} = require("../../api");
+} = require("../../api/comment");
 
 /**
  * user login
@@ -16,13 +16,10 @@ const {
  * @param res
  */
 async function getCommentListApi(event, req, res) {
-    const {
-        name,
-    } = req.body
-    if(!name){
+    if(!req.query.name){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "请输入关键词");
     }
-    const response = await getCommentList(name);
+    const response = await getCommentList(req.query.name);
     if(!response.length){
         return {
             message: '',

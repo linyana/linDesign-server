@@ -1,6 +1,6 @@
 const {
     getCommentList,
-} = require('getCommentList')
+} = require('./getCommentList')
 
 module.exports = {
     getCommentList,

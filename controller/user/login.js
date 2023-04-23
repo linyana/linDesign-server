@@ -26,6 +26,7 @@ async function userLoginApi(event, req, res) {
         account,
         password,
     } = req.body
+
     if(!account){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "请输入关键词");
     }

@@ -9,4 +9,6 @@ async function userRegister(account,password) {
     })
 }
 
-module.exports = userRegister
+module.exports = {
+    userRegister,
+}

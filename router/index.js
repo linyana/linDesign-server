@@ -1,12 +1,12 @@
 const routes = [
     {
-        path: "/user/register",
-        handler: require("../controller").userRegisterApi,
+        path: "/user/login",
+        handler: require("../controller").userLoginApi,
         methods: 'post',
     },
     {
-        path: "/user/login",
-        handler: require("../controller").userLoginApi,
+        path: "/user/register",
+        handler: require("../controller").userRegisterApi,
         methods: 'post',
     },
     {
