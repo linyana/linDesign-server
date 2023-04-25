@@ -18,6 +18,11 @@ const routes = [
         path: "/comments",
         handler: require("../controller").addCommentApi,
         methods: 'post',
+    },
+    {
+        path: "/comments/:id",
+        handler: require("../controller").deleteCommentApi,
+        methods: "delete",
     }
 ]
 

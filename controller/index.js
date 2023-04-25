@@ -6,6 +6,7 @@ const {
 const {
     getCommentListApi,
     addCommentApi,
+    deleteCommentApi,
 } = require('./comment')
 
 module.exports = {
@@ -13,4 +14,5 @@ module.exports = {
     userRegisterApi,
     getCommentListApi,
     addCommentApi,
+    deleteCommentApi,
 }

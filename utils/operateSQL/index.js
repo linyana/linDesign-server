@@ -53,4 +53,16 @@ module.exports = {
             );
         });
     },
+
+    delete(params){
+        this.constructor()
+        return new Promise((resolve, reject) => {
+            this.connection.query(
+                `DELETE FROM ${params.table} WHERE ${params.where}`,
+                (err, res) => {
+                    dbMiddleware(err, res, resolve, reject)
+                },
+            );
+        });
+    },
 };

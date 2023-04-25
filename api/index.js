@@ -6,6 +6,8 @@ const {
 const {
     getCommentList,
     addComment,
+    searchComment,
+    deleteComment,
 } = require('./comment')
 
 module.exports = {
@@ -13,4 +15,6 @@ module.exports = {
     userRegister,
     getCommentList,
     addComment,
+    searchComment,
+    deleteComment,
 }
