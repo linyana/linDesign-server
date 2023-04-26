@@ -1,6 +1,7 @@
 const {
     userLoginApi,
     userRegisterApi,
+    getUserDetailApi,
 } = require('./user')
 
 const {
@@ -15,4 +16,5 @@ module.exports = {
     getCommentListApi,
     addCommentApi,
     deleteCommentApi,
+    getUserDetailApi,
 }

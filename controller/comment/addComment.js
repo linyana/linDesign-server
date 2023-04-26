@@ -7,7 +7,7 @@ const {
 // api map
 const {
     addComment,
-} = require("../../api/comment");
+} = require("../../api");
 
 /**
  * get comment list

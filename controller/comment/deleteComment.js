@@ -10,7 +10,7 @@ const {
 const {
     searchComment,
     deleteComment,
-} = require("../../api/comment");
+} = require("../../api");
 
 /**
  * get comment list
@@ -25,7 +25,7 @@ async function deleteCommentApi(event, req, res) {
     const account_id = req.auth.account_id;
 
     if(!id) {
-        throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Text is a required filed.");
+        throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Id is a required filed.");
     };
 
     // 查询comment是否存在

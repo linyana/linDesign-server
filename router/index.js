@@ -10,6 +10,11 @@ const routes = [
         methods: 'post',
     },
     {
+        path: "/user/:id",
+        handler: require("../controller").getUserDetailApi,
+        methods: 'get',
+    },
+    {
         path: "/comments",
         handler: require("../controller").getCommentListApi,
         methods: 'get',
