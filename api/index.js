@@ -1,6 +1,7 @@
 const {
     searchAccount,
     userRegister,
+    getUserDetail,
 } = require('./user')
 
 const {
@@ -13,6 +14,7 @@ const {
 module.exports = {
     searchAccount,
     userRegister,
+    getUserDetail,
     getCommentList,
     addComment,
     searchComment,
