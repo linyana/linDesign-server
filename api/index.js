@@ -11,6 +11,10 @@ const {
     deleteComment,
 } = require('./comment')
 
+const {
+    upload,
+} = require('./upload')
+
 module.exports = {
     searchAccount,
     userRegister,
