@@ -1,5 +1,5 @@
 // 1. 引入配置好的multerConfig
-const multerConfig = require('./multerConfig');
+const multerConfig = require('../../utils');
 
 // 2. 定义静态变量
 const fileName = "file"  // 上传的 fileName 名称

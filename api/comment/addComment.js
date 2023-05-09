@@ -2,10 +2,10 @@ const {
     operateSQL,
 } = require('../../utils')
 
-async function addComment(account_id, text, name, connect_id,) {
+async function addComment(account_id, text, date, name, connect_id,) {
     return await operateSQL.insert({
         table: 'comments',
-        set: `account_id="${account_id}", text="${text}" ${name?', name="' + name + '"' : ',connect_id="' + connect_id + '"'}`
+        set: `account_id="${account_id}", text="${text}", date="${date}" ${name?', name="' + name + '"' : ',connect_id="' + connect_id + '"'}`
     })
 }
 

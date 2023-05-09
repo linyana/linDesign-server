@@ -10,6 +10,10 @@ const {
     deleteCommentApi,
 } = require('./comment')
 
+const {
+    uploadApi,
+} = require('./upload')
+
 module.exports = {
     userLoginApi,
     userRegisterApi,
@@ -17,4 +21,5 @@ module.exports = {
     addCommentApi,
     deleteCommentApi,
     getUserDetailApi,
+    uploadApi,
 }

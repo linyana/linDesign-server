@@ -33,5 +33,5 @@ async function uploadApi(event, req, res) {
 }
 
 module.exports = {
-    getUserDetailApi,
+    uploadApi,
 }
