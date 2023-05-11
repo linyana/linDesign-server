@@ -20,6 +20,7 @@ async function addCommentApi(event, req, res) {
         name,
         text,
         connect_id,
+        parent_id,
     } = req.body
     const account_id = req.auth.account_id;
     if(!name && !connect_id){
@@ -28,7 +29,7 @@ async function addCommentApi(event, req, res) {
     if(!text) {
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Text is a required filed.");
     };
-    const response = addComment(account_id, text, new Date().getTime(),  name || false, connect_id || false)
+    const response = addComment(account_id, text, new Date().getTime(),  name || false, connect_id || false, parent_id || false)
     return {
         data: response,
     }

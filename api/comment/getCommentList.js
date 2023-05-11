@@ -2,11 +2,17 @@ const {
     operateSQL,
 } = require('../../utils')
 
-async function getCommentList(name, connect_id) {
-    if(name && connect_id){
+async function getCommentList(name, parent_id, id) {
+    if(id){
         return await operateSQL.search({
             table: 'comments',
-            where: `name="${name}", connect_id="${connect_id}"`,
+            where: `id=${id}`,
+        })
+    }
+    if(name && parent_id){
+        return await operateSQL.search({
+            table: 'comments',
+            where: `name="${name}", parent_id="${parent_id}"`,
         })
     }
     else if (name){
@@ -17,7 +23,7 @@ async function getCommentList(name, connect_id) {
     }else {
         return await operateSQL.search({
             table: 'comments',
-            where: `${connect_id? 'connect_id="' + connect_id + '"' : ''}`,
+            where: `${parent_id? 'parent_id="' + parent_id + '"' : ''}`,
         })
     }
 }
