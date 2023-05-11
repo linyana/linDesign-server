@@ -58,26 +58,6 @@ async function getCommentListApi(event, req, res) {
     }
     await getReply(mainResponse)
 
-    // const arr = []
-    // const getReply = async (id) => {
-    //     const reply = await getCommentList(false,id);
-    //     if(!reply.length){
-    //         return arr
-    //     } else {
-    //         arr.push(reply)
-    //         for(let n in reply){
-    //             await getReply(reply[n].id)
-    //         }
-    //     }
-    // }
-    //
-    // for(let index in mainResponse){
-    //     const replyResponse = await getReply(mainResponse[index].id)
-    //     mainResponse[index].reply = replyResponse ?? []
-    // }
-
-
-
     return {
         data: mainResponse,
     }
