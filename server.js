@@ -75,7 +75,7 @@ class ExpressServer {
                 // 封装响应
                 result = {
                     code: 200,
-                    data: result,
+                    data: result || [],
                 };
                 console.log(
                     `req end path = ${
