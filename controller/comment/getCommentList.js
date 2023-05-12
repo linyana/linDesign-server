@@ -23,9 +23,7 @@ async function getCommentListApi(event, req, res) {
 
     const mainResponse = await getCommentList(req.query.name);
     if(!mainResponse.length) {
-        return {
-            data: null,
-        }
+        return []
     }
     const getReply = async (r) => {
         for(let index in r){
@@ -58,9 +56,7 @@ async function getCommentListApi(event, req, res) {
     }
     await getReply(mainResponse)
 
-    return {
-        data: mainResponse,
-    }
+    return mainResponse
 }
 
 module.exports = {
