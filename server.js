@@ -57,6 +57,7 @@ class ExpressServer {
                 return FORBIDDEN_ERROR_CODE;
             }
             const event = req.body;
+            console.log(event)
             try {
                 const startTime = new Date().getTime();
                 let params;
@@ -89,12 +90,12 @@ class ExpressServer {
                     result = {
                         code: e.code,
                         message: e.message,
-                        data: [],
+                        data: null,
                     };
                 } else {
                     result = {
                         code: 500,
-                        data: [],
+                        data: null,
                         message: "server error",
                     };
                 }

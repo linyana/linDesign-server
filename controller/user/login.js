@@ -38,7 +38,8 @@ async function userLoginApi(event, req, res) {
         const tokenStr = await setToken(account, response[0].id)
         return {
             message: '',
-            token: `Bearer ${tokenStr}`
+            token: `Bearer ${tokenStr}`,
+            user_name: response[0].name || response[0].account
         }
     }else {
         throw new MyError(NO_AUTH_ERROR_CODE, "password wrong.");
