@@ -11,6 +11,7 @@ const {
     addComment,
     searchComment,
     deleteComment,
+    getCommentListByUser,
 } = require('./comment')
 
 const {
@@ -27,4 +28,5 @@ module.exports = {
     searchPhone,
     deleteComment,
     userResetPassword,
+    getCommentListByUser,
 }

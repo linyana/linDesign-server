@@ -28,6 +28,14 @@ async function getCommentList(name, parent_id, id) {
     }
 }
 
+async function getCommentListByUser(account_id) {
+    return await operateSQL.search({
+        table: 'comments',
+        where: `account_id=${account_id}`,
+    })
+}
+
 module.exports = {
     getCommentList,
+    getCommentListByUser,
 }

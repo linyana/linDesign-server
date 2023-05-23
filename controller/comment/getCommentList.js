@@ -32,7 +32,6 @@ async function getCommentListApi(event, req, res) {
                     const accountDetailResponse = await getUserDetail(mainResponse[index].account_id)
                     mainResponse[index].account_name = accountDetailResponse[0].name || accountDetailResponse[0].account
                     mainResponse[index].account_img = accountDetailResponse[0].img
-
                 }
                 catch (err) {}
                 mainResponse[index].reply = connectResponse ?? []

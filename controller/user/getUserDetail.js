@@ -8,6 +8,8 @@ const {
 // api map
 const {
     getUserDetail,
+    getCommentListByUser,
+    getCommentList,
 } = require("../../api");
 
 /**
@@ -27,9 +29,32 @@ async function getUserDetailApi(event, req, res) {
 
     const response = await getUserDetail(id)
 
+    const mainResponse = await getCommentListByUser(id)
+
+    if(!mainResponse.length) {
+        return []
+    }
+
+    for(let index in mainResponse){
+        try{
+            const accountDetailResponse = await getUserDetail(mainResponse[index].account_id)
+            mainResponse[index].account_name = accountDetailResponse[0].name || accountDetailResponse[0].account
+            mainResponse[index].account_img = accountDetailResponse[0].img
+            if(mainResponse[index].connect_id){
+                const connectResponse = await getCommentList(false, false, mainResponse[index].connect_id)
+                mainResponse[index].connect_text = connectResponse[0].text
+            }
+        }
+        catch (err) {
+
+        }
+    }
+
     if(response.length){
         return {
-            data: response[0]
+            data: Object.assign(response[0],{
+                comments: mainResponse,
+            })
         }
     }else {
         throw new MyError(NOT_FOUND_ERROR_CODE, "Can\'t find this user.");

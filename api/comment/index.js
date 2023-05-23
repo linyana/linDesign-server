@@ -1,5 +1,6 @@
 const {
     getCommentList,
+    getCommentListByUser,
 } = require('./getCommentList')
 
 const {
@@ -19,4 +20,5 @@ module.exports = {
     addComment,
     searchComment,
     deleteComment,
+    getCommentListByUser,
 }
