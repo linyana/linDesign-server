@@ -39,7 +39,9 @@ async function userLoginApi(event, req, res) {
         return {
             message: '',
             token: `Bearer ${tokenStr}`,
-            user_name: response[0].name || response[0].account
+            user_name: response[0].name || response[0].account,
+            user_img: response[0].img,
+            user_id: response[0].id
         }
     }else {
         throw new MyError(NO_AUTH_ERROR_CODE, "password wrong.");

@@ -36,7 +36,7 @@ class ExpressServer {
             secret: 'mes_qdhd_mobile_xhykjyxgs',
             algorithms: ['HS256']
         }).unless({
-            path: ['/api/user/login', '/api/user/register']//除了这个地址，其他的URL都需要验证
+            path: ['/api/user/login', '/api/user/register', '/api/getComments', '/api/user/reset-password']//除了这个地址，其他的URL都需要验证
         }));
         this.app.use(function(err, req, res, next) {
             if (err.name = 'UnauthorizedError') {

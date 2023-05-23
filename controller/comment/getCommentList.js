@@ -25,14 +25,14 @@ async function getCommentListApi(event, req, res) {
     if(!mainResponse.length) {
         return []
     }
-    const getReply = async (r) => {
-        for(let index in r){
+        for(let index in mainResponse){
             try {
                 const connectResponse = await getCommentList(false,mainResponse[index].id);
                 try{
-                    const accountDetailResponse = await getUserDetail(mainResponse[index].id)
+                    const accountDetailResponse = await getUserDetail(mainResponse[index].account_id)
                     mainResponse[index].account_name = accountDetailResponse[0].name || accountDetailResponse[0].account
                     mainResponse[index].account_img = accountDetailResponse[0].img
+
                 }
                 catch (err) {}
                 mainResponse[index].reply = connectResponse ?? []
@@ -42,7 +42,7 @@ async function getCommentListApi(event, req, res) {
                             const replyAccountDetailResponse = await getUserDetail(mainResponse[index].reply[i].account_id);
                             mainResponse[index].reply[i].account_name = replyAccountDetailResponse[0].name || replyAccountDetailResponse[0].account
                             mainResponse[index].reply[i].account_img = replyAccountDetailResponse[0].img
-                            const replyCommentDetailResponse = await getCommentList(false,false,mainResponse[index].reply[i].id);
+                            const replyCommentDetailResponse = await getCommentList(false,false,mainResponse[index].reply[i].connect_id);
                             const replyConnectAccountDetailResponse = await getUserDetail(replyCommentDetailResponse[0].account_id);
                             mainResponse[index].reply[i].connect_name = replyConnectAccountDetailResponse[0].name || replyConnectAccountDetailResponse[0].account
                             mainResponse[index].reply[i].connect_text = replyCommentDetailResponse[0].text
@@ -53,8 +53,6 @@ async function getCommentListApi(event, req, res) {
             }
             catch (err) {}
         }
-    }
-    await getReply(mainResponse)
 
     return mainResponse
 }

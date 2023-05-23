@@ -31,7 +31,7 @@ async function addCommentApi(event, req, res) {
     };
     const response = addComment(account_id, text, new Date().getTime(),  name || false, connect_id || false, parent_id || false)
     return {
-        data: response,
+        data: true,
     }
 }
 

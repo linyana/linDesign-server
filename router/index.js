@@ -15,7 +15,7 @@ const routes = [
         methods: 'get',
     },
     {
-        path: "/comments",
+        path: "/getComments",
         handler: require("../controller").getCommentListApi,
         methods: 'get',
     },
@@ -27,7 +27,12 @@ const routes = [
     {
         path: "/comments/:id",
         handler: require("../controller").deleteCommentApi,
-        methods: "delete",
+        methods: 'delete',
+    },
+    {
+        path: "/user/reset-password",
+        handler: require("../controller").userResetPasswordApi,
+        methods: 'post',
     }
 ]
 

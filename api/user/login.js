@@ -9,6 +9,14 @@ async function searchAccount(account) {
     })
 }
 
+async function searchPhone(phone) {
+    return await operateSQL.search({
+        table: 'user',
+        where: `phone="${phone}"`,
+    })
+}
+
 module.exports = {
     searchAccount,
+    searchPhone,
 }

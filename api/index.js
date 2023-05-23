@@ -1,7 +1,9 @@
 const {
     searchAccount,
+    searchPhone,
     userRegister,
     getUserDetail,
+    userResetPassword,
 } = require('./user')
 
 const {
@@ -22,5 +24,7 @@ module.exports = {
     getCommentList,
     addComment,
     searchComment,
+    searchPhone,
     deleteComment,
+    userResetPassword,
 }

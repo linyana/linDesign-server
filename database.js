@@ -23,6 +23,6 @@ sequelize
     })
     .catch((e) => {
         console.error("Unable to connect to MySQL", e);
-    });
+    })
 
 module.exports = sequelize;

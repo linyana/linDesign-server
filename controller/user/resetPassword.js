@@ -1,15 +1,12 @@
 // error
 const MyError = require("../../exception");
 const {
-    REQUEST_PARAMS_ERROR_CODE,
-    NO_AUTH_ERROR_CODE,
+    REQUEST_PARAMS_ERROR_CODE, NO_AUTH_ERROR_CODE,
 } = require("../../exception/errorCode");
 
 // api map
 const {
-    userRegister,
-    searchAccount,
-    searchPhone,
+    userResetPassword, searchAccount, searchPhone,
 } = require("../../api");
 
 /**
@@ -18,7 +15,7 @@ const {
  * @param req
  * @param res
  */
-async function userRegisterApi(event, req, res) {
+async function userResetPasswordApi(event, req, res) {
     const {
         password,
         account,
@@ -34,24 +31,29 @@ async function userRegisterApi(event, req, res) {
     if(!phone){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Phone is a required field");
     }
+
     // 判断账号是否存在
     const response = await searchAccount(account);
-    if(response.length){
-        throw new MyError(NO_AUTH_ERROR_CODE, "This account had been already exist.");
+    if(!response.length){
+        throw new MyError(NO_AUTH_ERROR_CODE, "账号不存在");
     }
 
     // 判断电话是否存在
-    const phoneResponse = await searchPhone(account);
-    if(phoneResponse.length){
-        throw new MyError(NO_AUTH_ERROR_CODE, "This phone had been already exist.");
+    const phoneResponse = await searchPhone(phone);
+    if(!phoneResponse.length){
+        throw new MyError(NO_AUTH_ERROR_CODE, "手机号不存在");
     }
-    await userRegister(account,password)
+
+    if(response[0].id !== phoneResponse[0].id){
+        throw new MyError(REQUEST_PARAMS_ERROR_CODE, "账号和密码不匹配");
+    }
+    await userResetPassword(password,response[0].id)
     return {
         data: true,
-        message: 'register success.',
+        message: 'reset password success.',
     }
 }
 
 module.exports = {
-    userRegisterApi,
+    userResetPasswordApi,
 }
