@@ -4,6 +4,7 @@ const {
     userRegister,
     getUserDetail,
     userResetPassword,
+    editUserDetail,
 } = require('./user')
 
 const {
@@ -29,4 +30,5 @@ module.exports = {
     deleteComment,
     userResetPassword,
     getCommentListByUser,
+    editUserDetail,
 }

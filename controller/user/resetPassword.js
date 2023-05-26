@@ -9,6 +9,8 @@ const {
     userResetPassword, searchAccount, searchPhone,
 } = require("../../api");
 
+const md5 =  require('md5-node');
+
 /**
  * user register
  * @param event
@@ -22,10 +24,12 @@ async function userResetPasswordApi(event, req, res) {
         phone,
     } = req.body
 
+    const md5_password = md5(password  + 'wkldsw')
+
     if(!account){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Account is a required field");
     }
-    if(!password){
+    if(!md5_password){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Password is a required field");
     }
     if(!phone){
@@ -47,7 +51,7 @@ async function userResetPasswordApi(event, req, res) {
     if(response[0].id !== phoneResponse[0].id){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "账号和密码不匹配");
     }
-    await userResetPassword(password,response[0].id)
+    await userResetPassword(md5_password,response[0].id)
     return {
         data: true,
         message: 'reset password success.',

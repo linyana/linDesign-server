@@ -3,6 +3,7 @@ const {
     userRegisterApi,
     getUserDetailApi,
     userResetPasswordApi,
+    userEditUserDetailApi,
 } = require('./user')
 
 const {
@@ -24,4 +25,5 @@ module.exports = {
     getUserDetailApi,
     uploadApi,
     userResetPasswordApi,
+    userEditUserDetailApi,
 }

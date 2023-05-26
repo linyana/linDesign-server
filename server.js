@@ -10,6 +10,7 @@ const {FORBIDDEN_ERROR_CODE} = require("./exception/errorCode");
 const {
     expressjwt,
 } = require("express-jwt")
+const multer = require("multer");
 
 class ExpressServer {
     constructor (){
@@ -46,6 +47,10 @@ class ExpressServer {
                 });
             }
         });
+
+        const upload = multer({ dest: './public/uploads' }); //设置存储路径，没有文件夹会自动创建
+
+        this.app.use(upload.any());
     }
 
     setRoute(path, handlerFunction, methods) {

@@ -15,6 +15,11 @@ const routes = [
         methods: 'get',
     },
     {
+      path: '/user/:id',
+      handler: require("../controller").userEditUserDetailApi,
+      methods: 'post',
+    },
+    {
         path: "/getComments",
         handler: require("../controller").getCommentListApi,
         methods: 'get',
@@ -32,6 +37,11 @@ const routes = [
     {
         path: "/user/reset-password",
         handler: require("../controller").userResetPasswordApi,
+        methods: 'post',
+    },
+    {
+        path: "/upload",
+        handler: require("../controller").uploadApi,
         methods: 'post',
     }
 ]

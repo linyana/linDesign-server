@@ -15,10 +15,15 @@ const {
     userResetPassword,
 } = require('./resetPassword')
 
+const {
+    editUserDetail,
+} = require('./editUserDetail')
+
 module.exports = {
     searchAccount,
     userRegister,
     getUserDetail,
     searchPhone,
     userResetPassword,
+    editUserDetail,
 }

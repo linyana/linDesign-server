@@ -15,6 +15,8 @@ const {
     setToken,
 } = require("../../utils")
 
+const md5 =  require('md5-node');
+
 /**
  * user login
  * @param event
@@ -27,6 +29,8 @@ async function userLoginApi(event, req, res) {
         password,
     } = req.body
 
+    const md5_password = md5(password + 'wkldsw')
+
     if(!account){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "请输入关键词");
     }
@@ -34,7 +38,7 @@ async function userLoginApi(event, req, res) {
     if(!response.length){
         throw new MyError(NO_AUTH_ERROR_CODE, "account didn\'t exist.");
     }
-    if(response[0]?.password === password){
+    if(response[0]?.password === md5_password){
         const tokenStr = await setToken(account, response[0].id)
         return {
             message: '',

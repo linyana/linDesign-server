@@ -14,9 +14,14 @@ const {
     userResetPasswordApi,
 } = require('./resetPassword')
 
+const {
+    userEditUserDetailApi,
+} = require('./editUserDetail')
+
 module.exports = {
     userLoginApi,
     userRegisterApi,
     getUserDetailApi,
     userResetPasswordApi,
+    userEditUserDetailApi,
 }

@@ -32,7 +32,9 @@ async function getUserDetailApi(event, req, res) {
     const mainResponse = await getCommentListByUser(id)
 
     if(!mainResponse.length) {
-        return []
+        return {
+            data: response[0]
+        }
     }
 
     for(let index in mainResponse){

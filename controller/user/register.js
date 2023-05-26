@@ -12,6 +12,8 @@ const {
     searchPhone,
 } = require("../../api");
 
+const md5 =  require('md5-node');
+
 /**
  * user register
  * @param event
@@ -25,10 +27,12 @@ async function userRegisterApi(event, req, res) {
         phone,
     } = req.body
 
+    const md5_password = md5(password + 'wkldsw')
+
     if(!account){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Account is a required field");
     }
-    if(!password){
+    if(!md5_password){
         throw new MyError(REQUEST_PARAMS_ERROR_CODE, "Password is a required field");
     }
     if(!phone){
@@ -45,7 +49,7 @@ async function userRegisterApi(event, req, res) {
     if(phoneResponse.length){
         throw new MyError(NO_AUTH_ERROR_CODE, "This phone had been already exist.");
     }
-    await userRegister(account,password)
+    await userRegister(account,md5_password)
     return {
         data: true,
         message: 'register success.',
