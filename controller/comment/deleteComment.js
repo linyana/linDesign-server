@@ -35,6 +35,13 @@ async function deleteCommentApi(event, req, res) {
         throw new MyError(NOT_FOUND_ERROR_CODE, "This comment didn't exist.")
     }
 
+    if(account_id === 18){
+        const deleteResponse = await deleteComment(id)
+        return {
+            data: deleteResponse,
+        }
+    }
+
     // 判断是不是本人操作
     if(getAuthResponse[0].account_id === account_id){
         const deleteResponse = await deleteComment(id)

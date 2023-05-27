@@ -49,7 +49,7 @@ async function userResetPasswordApi(event, req, res) {
     }
 
     if(response[0].id !== phoneResponse[0].id){
-        throw new MyError(REQUEST_PARAMS_ERROR_CODE, "账号和密码不匹配");
+        throw new MyError(REQUEST_PARAMS_ERROR_CODE, "手机号与账户不匹配");
     }
     await userResetPassword(md5_password,response[0].id)
     return {

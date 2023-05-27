@@ -5,6 +5,11 @@ const routes = [
         methods: 'post',
     },
     {
+        path: "/user/reset-password",
+        handler: require("../controller").userResetPasswordApi,
+        methods: 'post',
+    },
+    {
         path: "/user/register",
         handler: require("../controller").userRegisterApi,
         methods: 'post',
@@ -33,11 +38,6 @@ const routes = [
         path: "/comments/:id",
         handler: require("../controller").deleteCommentApi,
         methods: 'delete',
-    },
-    {
-        path: "/user/reset-password",
-        handler: require("../controller").userResetPasswordApi,
-        methods: 'post',
     },
     {
         path: "/upload",

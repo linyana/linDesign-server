@@ -45,11 +45,11 @@ async function userRegisterApi(event, req, res) {
     }
 
     // 判断电话是否存在
-    const phoneResponse = await searchPhone(account);
+    const phoneResponse = await searchPhone(phone);
     if(phoneResponse.length){
         throw new MyError(NO_AUTH_ERROR_CODE, "This phone had been already exist.");
     }
-    await userRegister(account,md5_password)
+    await userRegister(account,md5_password,phone)
     return {
         data: true,
         message: 'register success.',
